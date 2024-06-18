@@ -1,0 +1,22 @@
+<h2>Job Details</h2>
+<p><strong>Title:</strong> {{job.title}}</p>
+<p><strong>Location:</strong> {{job.location}}</p>
+<p><strong>Salary:</strong> {{job.salary}}</p>
+<p><strong>Responsibilities:</strong> {{job.responsibilities}}</p>
+
+{{#if user}}
+    {{#ifEq user.role 'candidate'}}
+        <h3>Apply for this job</h3>
+        <form action="/apply/{{job._id}}" method="post">
+            <label for="resume">Upload Resume:</label>
+            <input type="file" name="resume" required>
+            
+            {{#each job.r1Check}}
+                <label>{{this}}</label>
+                <input type="text" name="r1Responses" required>
+            {{/each}}
+            
+            <button type="submit">Apply</button>
+        </form>
+    {{/ifEq}}
+{{/if}}

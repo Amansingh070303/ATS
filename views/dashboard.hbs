@@ -1,0 +1,15 @@
+<h2>Dashboard</h2>
+{{#if user}}
+    {{#ifEq user.role 'employer'}}
+        <a href="/create-job">Create Job</a>
+    {{/ifEq}}
+    {{#ifEq user.role 'coordinator'}}
+        <a href="/applications">View Applications</a>
+    {{/ifEq}}
+{{/if}}
+<h3>Jobs</h3>
+<ul>
+    {{#each jobs}}
+        <li><a href="/jobs/{{this._id}}">{{this.title}}</a></li>
+    {{/each}}
+</ul>
